@@ -1,0 +1,43 @@
+.wrapper {
+    margin: 3px;
+    padding: 5px;
+    text-align: center;
+    background-color: aliceblue;
+}
+
+.container {
+    margin-bottom: 16px;
+}
+
+.resultsContainer {
+    margin: 10px;
+}
+
+.wrapper h1 {
+    background-color: black;
+    color: #ffff;
+    border-radius: 10px;
+}
+
+.wrapper h1:hover {
+    background-color: grey;
+    color: black;
+}
+
+#search {
+    font-size: larger;
+    border-radius: 20px;
+    background-color: black;
+    color: #ffff;
+}
+
+#search:hover {
+    background-color: grey;
+    color: black;
+    border-color: grey;
+}
+
+#input {
+    font-size: large;
+    border-radius: 3px;
+}

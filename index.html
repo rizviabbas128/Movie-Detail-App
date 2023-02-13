@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="./style.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Detail App</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Search Movie for Details</h1>
+        <div class="container">
+            <input type="text" id="input" placeholder="Enter movie name here..." />
+            <button id="search">Search</button>
+        </div>
+        <div id="results"></div>
+    </div>
+    <script>
+        const input = document.getElementById('input');
+        const searchBtn = document.getElementById('search');
+        const results = document.getElementById('results');
+
+        searchBtn.addEventListener('click', async function () {
+            let title = input.value;
+            try {
+                const data = await fetch(`http://www.omdbapi.com/?t=${title}&apikey=59c8dc3e`);
+                const res = await data.json();
+                console.log(res);
+                if (res.response == 'False') {
+                    results.innerHTML = `<h2>
+                        Movie not found , Enter the Valid Name!
+                        <h2>`
+                } else {
+                    const movieDetails = `
+                    <div class="resultsContainer">
+                        <img src="${res.Poster} alt="${res.Title}" />
+                    <h2>Title: ${res.Title}</h2>
+                    <ul>
+                        <li>Year: ${res.Year}</li>
+                        <li>imdb: ${res.imdbRating}</li>
+                        <li>Cast:<ul>
+                            <li>Actors: ${res.Actors}</li>
+                            <li>Director: ${res.Director}</li>
+                            <li>Writer: ${res.Writer}</li>
+                            <li>Movie length: ${res.Runtime}</li>
+                            <li>Released: ${res.Released}</li>
+                            </ul></li>
+                        </ul>
+                        </div>
+                    `
+                    results.innerHTML = movieDetails;
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        })
+    </script>
+</body>
+
+</html>
